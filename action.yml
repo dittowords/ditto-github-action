@@ -1,0 +1,32 @@
+name: Ditto Text Updater
+description: Automatically updates Ditto text in a repository that has ditto-cli initiated
+inputs:
+  ditto-api-key:
+    description: "Your Ditto API key. More info: https://developer.dittowords.com/api-reference#creating-an-api-key"
+    required: true
+env:
+  DITTO_API_KEY: ${{ inputs.ditto-api-key }}
+run:
+  using: "composite"
+  steps:
+    - name: Set current date as env variable
+      id: datetime
+      run: echo "::set-output name=datetime::$(date +'%Y-%m-%dT-%H%M%S')"
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - run: npm install --global @dittowords/cli
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Ditto pull
+      run: |
+        npx ditto-cli pull
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+      with:
+        commit-message: "ditto: text update ${{ steps.datetime.outputs.datetime }}" 
+        title: Ditto text update ${{ steps.datetime.outputs.datetime  }}
+        body: Automated change by the Ditto Text Updater action
+        branch: ditto-update-${{ steps.datetime.outputs.datetime }}

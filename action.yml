@@ -4,8 +4,6 @@ inputs:
   ditto-api-key:
     description: "Your Ditto API key. More info: https://developer.dittowords.com/api-reference#creating-an-api-key"
     required: true
-env:
-  DITTO_API_KEY: ${{ inputs.ditto-api-key }}
 runs:
   using: "composite"
   steps:
@@ -24,6 +22,9 @@ runs:
       with:
         fetch-depth: 0
     - name: Ditto pull
+      env:
+        DITTO_API_KEY: ${{ inputs.ditto-api-key }}
+      shell: bash
       run: |
         npx ditto-cli pull
     - name: Create Pull Request

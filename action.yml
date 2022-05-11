@@ -5,7 +5,7 @@ inputs:
     description: "Your Ditto API key. More info: https://developer.dittowords.com/api-reference#creating-an-api-key"
     required: true
 env:
-  DITTO_API_KEY: ${{ inputs.ditto-api-key }}
+  DITTO_API_KEY: ${{ github.event.inputs.ditto-api-key }}
 runs:
   using: "composite"
   steps:

@@ -6,7 +6,7 @@ inputs:
     required: true
 env:
   DITTO_API_KEY: ${{ inputs.ditto-api-key }}
-run:
+runs:
   using: "composite"
   steps:
     - name: Set current date as env variable

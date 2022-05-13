@@ -14,7 +14,7 @@ runs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: lts/gallium
+        node-version: 16
     - run: npm install --global @dittowords/cli
       shell: bash
     - uses: actions/checkout@v3

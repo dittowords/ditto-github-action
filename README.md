@@ -1,8 +1,8 @@
-# ditto-text-updater
-The Ditto Text Updater action creates a PR with the most recent Ditto text updates.
+# ditto-github-action
+The Ditto github action creates a PR with the most recent Ditto text updates.
 
 ## Prerequisites
-**To include the Ditto Text Updater action as a part of your repo's workflow, the repo must have integration with the [Ditto CLI](https://github.com/dittowords/cli).** If your repository does not have a `ditto` directory with a filled-out `config.yml` **as a result of initializing the Ditto CLI** this action will not work.
+**To include the Ditto GitHub action as a part of your repo's workflow, the repo must have integration with the [Ditto CLI](https://github.com/dittowords/cli).** If your repository does not have a `ditto` directory with a filled-out `config.yml` **as a result of initializing the Ditto CLI** this action will not work.
 
 ## Inputs
 |Name|Required|Description|

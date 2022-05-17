@@ -17,6 +17,8 @@ runs:
         node-version: 16
     - run: npm install --global gh-action-stats
       shell: bash
+    - run: export NODE_PATH=$(npm root --quiet -g)
+      shell: bash
     - name: Collect stats
       run: node ${{ github.action_path }}/stats.js
       shell: bash

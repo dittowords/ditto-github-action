@@ -18,7 +18,7 @@ runs:
     - run: npm install --global gh-action-stats
       shell: bash
     - name: Collect stats
-      run: node ./stats.js
+      run: node ${{ github.action_path }}/stats.js
       shell: bash
     - run: npm install --global @dittowords/cli
       shell: bash

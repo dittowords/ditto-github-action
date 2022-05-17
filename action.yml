@@ -15,12 +15,10 @@ runs:
       uses: actions/setup-node@v1
       with:
         node-version: 16
-    - run: npm install --global gh-action-stats
-      shell: bash
-    - run: export NODE_PATH=$(npm root --quiet -g)
+    - run: npm i
       shell: bash
     - name: Collect stats
-      run: node ${{ github.action_path }}/stats.js
+      run: npm start
       shell: bash
     - run: npm install --global @dittowords/cli
       shell: bash

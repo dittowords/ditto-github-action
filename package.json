@@ -1,0 +1,22 @@
+{
+  "name": "ditto-github-action",
+  "version": "1.0.0",
+  "description": "The Ditto github action creates a PR with the most recent Ditto text updates.",
+  "main": "stats.js",
+  "scripts": {
+    "start": "node stats.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dittowords/ditto-text-updater.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dittowords/ditto-text-updater/issues"
+  },
+  "homepage": "https://github.com/dittowords/ditto-text-updater#readme",
+  "dependencies": {
+    "gh-action-stats": "^0.0.9"
+  }
+}

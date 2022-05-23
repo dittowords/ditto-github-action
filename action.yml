@@ -28,7 +28,7 @@ runs:
         DITTO_API_KEY: ${{ inputs.ditto-api-key }}
       shell: bash
       run: |
-        npx ditto-cli pull
+        npx ditto-cli pull -m githubActionRequest:true
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:

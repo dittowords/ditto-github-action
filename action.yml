@@ -1,4 +1,4 @@
-name: Ditto Text Updater
+name: Ditto
 description: Automatically updates Ditto text in a repository that has ditto-cli initiated
 inputs:
   ditto-api-key:

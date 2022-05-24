@@ -36,3 +36,6 @@ runs:
         title: Ditto text update ${{ steps.datetime.outputs.datetime  }}
         body: Automated change by the Ditto Text Updater action
         branch: ditto-update-${{ steps.datetime.outputs.datetime }}
+branding:
+  icon: type
+  color: yellow

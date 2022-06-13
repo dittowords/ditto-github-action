@@ -4,10 +4,10 @@ inputs:
   ditto-api-key:
     description: "Your Ditto API key. More info: https://developer.dittowords.com/api-reference#creating-an-api-key"
     required: true
-  root-dir:
+  ditto-dir:
     description: "`ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository."
     required: false
-    default: "."
+    default: "./ditto"
 runs:
   using: "composite"
   steps:
@@ -32,7 +32,7 @@ runs:
         DITTO_API_KEY: ${{ inputs.ditto-api-key }}
       shell: bash
       run: |
-        cd ${{ inputs.root-dir }} && npx ditto-cli pull -m githubActionRequest:true
+        cd ${{ inputs.ditto-dir }}/.. && npx ditto-cli pull -m githubActionRequest:true
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:

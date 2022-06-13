@@ -19,9 +19,6 @@ runs:
       uses: actions/setup-node@v1
       with:
         node-version: 16
-    - name: Collect stats
-      run: cd ${{ github.action_path }} && npm i && npm start
-      shell: bash
     - run: npm install --global @dittowords/cli
       shell: bash
     - uses: actions/checkout@v3

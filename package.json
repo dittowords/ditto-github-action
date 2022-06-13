@@ -16,7 +16,5 @@
     "url": "https://github.com/dittowords/ditto-text-updater/issues"
   },
   "homepage": "https://github.com/dittowords/ditto-text-updater#readme",
-  "dependencies": {
-    "gh-action-stats": "^0.0.9"
-  }
+  "dependencies": {}
 }

@@ -4,6 +4,10 @@ inputs:
   ditto-api-key:
     description: "Your Ditto API key. More info: https://developer.dittowords.com/api-reference#creating-an-api-key"
     required: true
+  ditto-dir:
+    description: "`ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository."
+    required: false
+    default: "./ditto"
 runs:
   using: "composite"
   steps:
@@ -15,9 +19,6 @@ runs:
       uses: actions/setup-node@v1
       with:
         node-version: 16
-    - name: Collect stats
-      run: cd ${{ github.action_path }} && npm i && npm start
-      shell: bash
     - run: npm install --global @dittowords/cli
       shell: bash
     - uses: actions/checkout@v3
@@ -28,7 +29,7 @@ runs:
         DITTO_API_KEY: ${{ inputs.ditto-api-key }}
       shell: bash
       run: |
-        npx ditto-cli pull -m githubActionRequest:true
+        cd ${{ inputs.ditto-dir }}/.. && npx ditto-cli pull -m githubActionRequest:true
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:

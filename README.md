@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull Ditto text and create a PR
-        uses: dittowords/ditto-github-action@v0.1.0
+        uses: dittowords/ditto-github-action@v0.2.0
         with:
           ditto-api-key: ${{ secrets.DITTO_API_KEY }}
 ```  

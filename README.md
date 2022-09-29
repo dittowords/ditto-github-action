@@ -8,7 +8,7 @@ The Ditto github action creates a PR with the most recent Ditto text updates.
 |Name|Required|Description|
 |---|---|---|
 |ditto-api-key|yes|[Generated Ditto API key](https://developer.dittowords.com/api-reference#creating-an-api-key)|
-|ditto-dir|no|`ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository.|
+|ditto-dir|no|`ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository. Must include 'ditto' (e.g. `./src/ditto`).|
 
 ## Example Workflow
 ```

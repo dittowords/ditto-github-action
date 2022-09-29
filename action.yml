@@ -5,7 +5,7 @@ inputs:
     description: "Your Ditto API key. More info: https://developer.dittowords.com/api-reference#creating-an-api-key"
     required: true
   ditto-dir:
-    description: "`ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository."
+    description: "`ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository. Must include 'ditto' (e.g. './src/ditto')"
     required: false
     default: "./ditto"
 runs:

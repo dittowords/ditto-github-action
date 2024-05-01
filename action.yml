@@ -8,6 +8,10 @@ inputs:
     description: "`ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository. Must include 'ditto' (e.g. './src/ditto')."
     required: false
     default: "./ditto"
+  pr-title-prefix:
+    description: "String to prefix the pull request title with."
+    required: false
+    default: "Ditto text update"
 runs:
   using: "composite"
   steps:
@@ -33,8 +37,8 @@ runs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:
-        commit-message: "ditto: text update ${{ steps.datetime.outputs.datetime }}" 
-        title: Ditto text update ${{ steps.datetime.outputs.datetime  }}
+        commit-message: "ditto: text update ${{ steps.datetime.outputs.datetime }}"
+        title: ${{ inputs.pr-title-prefix }} ${{ steps.datetime.outputs.datetime  }}
         body: Automated change by the Ditto Text Updater action
         branch: ditto-update-${{ steps.datetime.outputs.datetime }}
 branding:

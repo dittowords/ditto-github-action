@@ -27,7 +27,7 @@ runs:
       uses: actions/setup-node@v1
       with:
         node-version: 16
-    - run: npm install --global @dittowords/cli^5.0.0
+    - run: npm install --global @dittowords/cli@^5.0.0
       shell: bash
     - uses: actions/checkout@v3
       with:

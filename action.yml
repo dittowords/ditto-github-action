@@ -34,7 +34,8 @@ runs:
         fetch-depth: 0
     - name: Ditto pull
       env:
-        DITTO_API_KEY: ${{ inputs.ditto-api-key }}
+        DITTO_API_KEY: ${{ inputs.ditto-api-key }} # Legacy CLI
+        DITTO_TOKEN: ${{ inputs.ditto-api-key }} # CLI v5
       shell: bash
       run: |
         cd ${{ inputs.ditto-dir }}/..

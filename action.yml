@@ -12,6 +12,10 @@ inputs:
     description: "String to prefix the pull request title with."
     required: false
     default: "Ditto text update"
+  pull-from-legacy:
+    description: "By default, will pull from the latest version of Ditto. Set this to true to pull from legacy Ditto projects based on a legacy config file."
+    required: false
+    default: false
 runs:
   using: "composite"
   steps:
@@ -23,7 +27,7 @@ runs:
       uses: actions/setup-node@v1
       with:
         node-version: 16
-    - run: npm install --global @dittowords/cli@4.5.2
+    - run: npm install --global @dittowords/cli^5.0.0
       shell: bash
     - uses: actions/checkout@v3
       with:
@@ -33,7 +37,12 @@ runs:
         DITTO_API_KEY: ${{ inputs.ditto-api-key }}
       shell: bash
       run: |
-        cd ${{ inputs.ditto-dir }}/.. && npx ditto-cli pull -m githubActionRequest:true
+        cd ${{ inputs.ditto-dir }}/..
+        if [ "${{ inputs.pull-from-legacy }}" = "true" ]; then
+          npx ditto-cli pull --legacy -m githubActionRequest:true 
+        else
+         npx ditto-cli pull -m githubActionRequest:true
+        fi
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:

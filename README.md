@@ -8,11 +8,12 @@ The Ditto github action creates a PR with the most recent Ditto text updates.
 
 ## Inputs
 
-| Name            | Required | Description                                                                                                                                                  |
-| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ditto-api-key   | yes      | [Generated Ditto API key](https://developer.dittowords.com/api-reference#creating-an-api-key)                                                                |
-| ditto-dir       | no       | `ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository. Must include 'ditto' (e.g. `./src/ditto`). |
-| pr-title-prefix | no       | String to prefix the pull request title with (e.g. "Web App Ditto Updates" would result in a PR titled: `Web App Ditto Updates YYYY-MM-DDT`)                 |
+| Name             | Required | Description                                                                                                                                                  |
+| ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ditto-api-key    | yes      | [Generated Ditto API key](https://developer.dittowords.com/api-reference#creating-an-api-key)                                                                |
+| ditto-dir        | no       | `ditto` directory location. Only required if the `ditto` directory is not located at the root of your repository. Must include 'ditto' (e.g. `./src/ditto`). |
+| pr-title-prefix  | no       | String to prefix the pull request title with (e.g. "Web App Ditto Updates" would result in a PR titled: `Web App Ditto Updates YYYY-MM-DDT`)                 |
+| pull-from-legacy | no       | By default, the action will pull from the latest version of Ditto. Set this to true to pull from legacy Ditto projects based on a legacy config file.        |
 
 ## Example Workflow
 
@@ -24,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull Ditto text and create a PR
-        uses: dittowords/ditto-github-action@v0.2.0
+        uses: dittowords/ditto-github-action@v1.0.0
         with:
           ditto-api-key: ${{ secrets.DITTO_API_KEY }}
 ```
@@ -39,18 +40,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull Ditto text for Web app and create a PR
-        uses: dittowords/ditto-github-action@v0.2.0
+        uses: dittowords/ditto-github-action@v1.0.0
         with:
           ditto-api-key: ${{ secrets.DITTO_API_KEY }}
           ditto-dir: "./web/ditto"
           pr-title-prefix: "Web Ditto text update"
 
       - name: Pull Ditto text for iOS app and create a PR
-        uses: dittowords/ditto-github-action@v0.2.0
+        uses: dittowords/ditto-github-action@v1.0.0
         with:
           ditto-api-key: ${{ secrets.DITTO_API_KEY }}
           ditto-dir: "./ios/ditto"
           pr-title-prefix: "iOS App Ditto text update"
+```
+
+### If you have both new and legacy Ditto content in your application
+
+```
+name: Update Ditto Text
+on: workflow_dispatch
+jobs:
+  UpdateWebDittoText:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Ditto text and create a PR
+        uses: dittowords/ditto-github-action@v1.0.0
+        with:
+          ditto-api-key: ${{ secrets.DITTO_API_KEY }}
+          ditto-dir: "./new/ditto"
+          pr-title-prefix: "New Ditto text update"
+
+      - name: Pull legacy Ditto text and create a PR
+        uses: dittowords/ditto-github-action@v1.0.0
+        with:
+          ditto-api-key: ${{ secrets.DITTO_API_KEY }}
+          ditto-dir: "./legacy/ditto"
+          pr-title-prefix: "Legacy Ditto text update"
+          pull-from-legacy: "true"
 ```
 
 This example workflow allows you to [manually start the workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) resulting in the creation of a PR.

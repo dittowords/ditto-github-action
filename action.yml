@@ -21,7 +21,7 @@ runs:
   steps:
     - name: Set current date as env variable
       id: datetime
-      run: echo "::set-output name=datetime::$(date +'%Y-%m-%dT-%H%M%S')"
+      run: echo "datetime=$(date +'%Y-%m-%dT-%H%M%S')" >> $GITHUB_OUTPUT
       shell: bash
     - name: Use Node.js
       uses: actions/setup-node@v1
